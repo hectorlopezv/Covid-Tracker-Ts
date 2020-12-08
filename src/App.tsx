@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import InfoBox from './components/InfoBox/InfoBox';
 import Map from './components/map/Map';
 import Table from './components/Table/Table';
+import LineGraph from './components/LineGraph/LineGraph';
 import { sortData } from './utils/sort_data';
 
 import './App.css';
@@ -110,7 +111,9 @@ const App = () => {
           </Table>
 
           <h3>Worldwide new cases</h3>
-          {/*graph*/}
+          <LineGraph 
+            casesType="cases"
+          />
         </CardContent>
       </Card>
     </div>
