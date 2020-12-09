@@ -72,7 +72,6 @@ const LineGraph: React.FC<LineGraphProps> = (props) => {
 
     return ( 
         <div>
-            <h1>im a Graph</h1>
         {data?.length > 0 &&
             <Line
                 data={{
