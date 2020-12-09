@@ -25,6 +25,7 @@ body{
 
 .app_left{
     flex: 0.7;
+    margin-right: 20px;
 }
 
 .app_right{
@@ -35,6 +36,10 @@ body{
 
     .app{
         flex-direction: column;
+    }
+    .app_left {
+        margin-bottom: 15px;
+        margin-right: 0px;
     }
 
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Table.css';
-
+import numeral from 'numeral';
 
 export interface TableProps {
     countries: any;
@@ -16,7 +16,7 @@ const Table: React.FC<TableProps> = (props) => {
                         return <tr key={country.country}>
                             <td>{country.country}</td>
                             <td>
-                                <strong>{country.cases}</strong>
+                                <strong>{numeral(country.cases).format("0,0")}</strong>
                             </td>
                         </tr>
                     })}

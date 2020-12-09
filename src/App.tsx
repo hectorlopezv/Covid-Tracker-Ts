@@ -18,6 +18,7 @@ const App = () => {
   const [mapCenter, setmapCenter] = useState({lat: 34.80746, lng: -40.4796});
   const [mapZoom, setmapZoom] = useState<number>(3);
   const [mapcountries, setmapcountries] = useState([]);
+  const [casesType, setcasesType] = useState('cases');
 
   const onCountyChange = async (event: any) => {
     const countryCode = event.target.value;
@@ -88,18 +89,27 @@ const App = () => {
 
         <div className="app_stats">
           <InfoBox
+          onClick={(event: any) => {
+              console.log('cases')
+            setcasesType('cases')}}
             title="Coronavirus Cases"
             cases={prettyPrint(contryInfo.todayCases)}
             total={prettyPrint(contryInfo.cases)}
           />
 
           <InfoBox
+          onClick={(event: any) => {
+            console.log('recovered')
+            setcasesType('recovered')}}
             title="Recovered"
             cases={prettyPrint(contryInfo.todayRecovered)}
             total={prettyPrint(contryInfo.recovered)}
           />
 
           <InfoBox
+            onClick={(event: any) => {
+              console.log('deaths')
+              setcasesType('deaths')}}
             title="Deaths"
             cases={prettyPrint(contryInfo.todayDeaths)}
             total={prettyPrint(contryInfo.deaths)}
@@ -110,7 +120,7 @@ const App = () => {
           center={mapCenter}
           zoom={mapZoom}
           countries={mapcountries}
-          cases="cases"
+          cases={casesType}
         />
       </div>
 
