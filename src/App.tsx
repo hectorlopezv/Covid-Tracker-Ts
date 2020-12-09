@@ -15,7 +15,7 @@ const App = () => {
   const [contryInfo, setcontryInfo] = useState<{ [prop: string]: any }>({});
   const [tableData, settableData] = useState<any[]>([]);
   const [mapCenter, setmapCenter] = useState({lat: 34.80746, lng: -40.4796});
-  const [mapZoom, setmapZoom] = useState(3);
+  const [mapZoom, setmapZoom] = useState<number>(3);
   const onCountyChange = async (event: any) => {
     const countryCode = event.target.value;
     const url = countryCode === 'worldwide' ?
@@ -26,7 +26,8 @@ const App = () => {
       .then(data => {
         setcountry(countryCode);
         setcontryInfo(data);
-        console.log(data);
+        setmapCenter({lat: data.countryInfo.lat, lng: data.countryInfo.long});
+        setmapZoom(2);
       })
   };
 
@@ -37,7 +38,6 @@ const App = () => {
       .then((response: any) => response.json())
       .then(data => {
         setcontryInfo(data);
-        console.log(data);
       })
   }, []);
 
