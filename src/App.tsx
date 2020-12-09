@@ -128,13 +128,11 @@ const App = () => {
         <CardContent>
           <h3>Live Cases By County</h3>
           {/*table*/}
-          <Table countries={tableData}>
+          <Table countries={tableData}/>
 
-          </Table>
-
-          <h3>Worldwide new cases</h3>
+          <h3>Worldwide new cases {casesType}</h3>
           <LineGraph 
-            casesType="cases"
+            casesType={casesType}
           />
         </CardContent>
       </Card>

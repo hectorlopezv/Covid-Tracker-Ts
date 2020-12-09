@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import { Line } from 'react-chartjs-2';
+import React, {useState, useEffect, useRef} from 'react'
+import { Line, LinearComponentProps } from 'react-chartjs-2';
 import {buildChartData} from '../../utils/build_chartdata';
 import numeral from 'numeral';
+import * as _ from 'lodash';
 export interface LineGraphProps {
-    casesType: 'cases' | 'recovered' | 'deaths';
+    casesType: string;
 }
 
 const options = {
@@ -53,27 +54,30 @@ const options = {
 
 
 const LineGraph: React.FC<LineGraphProps> = (props) => {
+
     const [data, setdata] = useState<{[prop: string]:any}>({});
-
+    const {casesType} = props;
     const url = "https://disease.sh/v3/covid-19/historical/all?lastdays=120";
-
     useEffect(() => { 
+      
         const fetchData = async () => {
             await fetch(url)
             .then((response: any) => response.json())
             .then(data => {
                 //clean data for graph
-                const chartData = buildChartData(data, props.casesType);
-                setdata(chartData);
+
+                let chartData = buildChartData(data, casesType);
+                const newCopy = _.cloneDeep(chartData);
+                setdata(newCopy);
             });
         };
         fetchData();
-    }, [props.casesType]);
-
+    }, [casesType]);
     return ( 
         <div>
         {data?.length > 0 &&
             <Line
+                redraw 
                 data={{
                 datasets: [
                     {

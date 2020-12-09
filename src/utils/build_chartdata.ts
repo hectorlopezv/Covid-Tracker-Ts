@@ -1,6 +1,7 @@
 // data: [{x:10 , y:20}, {x:20 , y: 50}]
+import * as _ from 'lodash';
 
-export const buildChartData = (data: any, casesTypes: 'cases' | 'deaths' | 'recovered' = 'cases') => {
+export const buildChartData = (data: any, casesTypes: string = 'cases') => {
         const chartData: { x: any; y: number; }[] = [];
         let lastDataPoint: any;
 
@@ -14,5 +15,5 @@ export const buildChartData = (data: any, casesTypes: 'cases' | 'deaths' | 'reco
              }
              lastDataPoint = data['cases'][date];
         }
-        return chartData;
+        return _.cloneDeep(chartData);
 }
