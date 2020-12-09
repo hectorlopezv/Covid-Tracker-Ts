@@ -14,7 +14,8 @@ const App = () => {
   const [country, setcountry] = useState("worldwide");
   const [contryInfo, setcontryInfo] = useState<{ [prop: string]: any }>({});
   const [tableData, settableData] = useState<any[]>([]);
-
+  const [mapCenter, setmapCenter] = useState({lat: 34.80746, lng: -40.4796});
+  const [mapZoom, setmapZoom] = useState(3);
   const onCountyChange = async (event: any) => {
     const countryCode = event.target.value;
     const url = countryCode === 'worldwide' ?
@@ -99,7 +100,10 @@ const App = () => {
           />
         </div>
 
-        <Map />
+        <Map 
+          center={mapCenter}
+          zoom={mapZoom}
+        />
       </div>
 
       <Card className="app_right">

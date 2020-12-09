@@ -68,26 +68,25 @@ const LineGraph: React.FC<LineGraphProps> = (props) => {
             });
         };
         fetchData();
-    }, []);
+    }, [props.casesType]);
 
     return ( 
         <div>
             <h1>im a Graph</h1>
-            {data?.length > 0 &&
-        <Line
-            data={{
-            datasets: [
-                {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
-                data: data,
-                },
-            ],
-            }}
-            options={options}
-        />
-
-            } 
+        {data?.length > 0 &&
+            <Line
+                data={{
+                datasets: [
+                    {
+                    backgroundColor: "rgba(204, 16, 52, 0.5)",
+                    borderColor: "#CC1034",
+                    data: data,
+                    },
+                ],
+                }}
+                options={options}
+            />
+        } 
 
         </div>
      );

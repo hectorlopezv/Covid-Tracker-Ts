@@ -10,14 +10,20 @@ const Table: React.FC<TableProps> = (props) => {
     const { countries } = props;
     return (  
         <div className="table">
-            {countries.map((country: any) => {
-                return <tr>
-                    <td>{country.country}</td>
-                    <td>
-                        <strong>{country.cases}</strong>
-                    </td>
-                </tr>
-            })}
+            <table>
+                <tbody>
+                    {countries.map((country: any) => {
+                        return <tr key={country.country}>
+                            <td>{country.country}</td>
+                            <td>
+                                <strong>{country.cases}</strong>
+                            </td>
+                        </tr>
+                    })}
+                </tbody>
+
+            </table>
+          
         </div>
 
     );
