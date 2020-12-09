@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 export interface LineGraphProps {
     casesType: string;
     country: string;
+    className: string;
 }
 
 const options = {
@@ -57,7 +58,7 @@ const options = {
 const LineGraph: React.FC<LineGraphProps> = (props) => {
 
     const [data, setdata] = useState<{[prop: string]:any}>({});
-    const {casesType, country} = props;
+    const {casesType, country, className} = props;
 
     useEffect(() => { 
 
@@ -78,7 +79,7 @@ const LineGraph: React.FC<LineGraphProps> = (props) => {
         fetchData();
     }, [casesType, country]);
     return ( 
-        <div>
+        <div className={className}>
         {data?.length > 0 &&
             <Line
                 

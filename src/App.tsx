@@ -19,6 +19,7 @@ const App = () => {
   const [mapZoom, setmapZoom] = useState<number>(3);
   const [mapcountries, setmapcountries] = useState([]);
   const [casesType, setcasesType] = useState('cases');
+  
 
   const onCountyChange = async (event: any) => {
     const countryCode = event.target.value;
@@ -89,6 +90,8 @@ const App = () => {
 
         <div className="app_stats">
           <InfoBox
+          isRed
+          active={casesType === 'cases'}
           onClick={(event: any) => setcasesType('cases')}
             title="Coronavirus Cases"
             cases={prettyPrint(contryInfo.todayCases)}
@@ -96,6 +99,8 @@ const App = () => {
           />
 
           <InfoBox
+          isRed={false}
+          active={casesType === 'recovered'}
           onClick={(event: any) => setcasesType('recovered')}
             title="Recovered"
             cases={prettyPrint(contryInfo.todayRecovered)}
@@ -103,6 +108,8 @@ const App = () => {
           />
 
           <InfoBox
+            isRed
+          active={casesType === 'deaths'}
             onClick={(event: any) => setcasesType('deaths')}
             title="Deaths"
             cases={prettyPrint(contryInfo.todayDeaths)}
@@ -124,8 +131,9 @@ const App = () => {
           {/*table*/}
           <Table countries={tableData}/>
 
-          <h3>Worldwide new cases {casesType}</h3>
+          <h3 className="app_graphTitle">Worldwide new cases {casesType}</h3>
           <LineGraph 
+            className="app_graph"
             casesType={casesType}
             country={contryInfo?.countryInfo?.iso2}
           />
