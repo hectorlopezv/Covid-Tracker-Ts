@@ -89,27 +89,21 @@ const App = () => {
 
         <div className="app_stats">
           <InfoBox
-          onClick={(event: any) => {
-              console.log('cases')
-            setcasesType('cases')}}
+          onClick={(event: any) => setcasesType('cases')}
             title="Coronavirus Cases"
             cases={prettyPrint(contryInfo.todayCases)}
             total={prettyPrint(contryInfo.cases)}
           />
 
           <InfoBox
-          onClick={(event: any) => {
-            console.log('recovered')
-            setcasesType('recovered')}}
+          onClick={(event: any) => setcasesType('recovered')}
             title="Recovered"
             cases={prettyPrint(contryInfo.todayRecovered)}
             total={prettyPrint(contryInfo.recovered)}
           />
 
           <InfoBox
-            onClick={(event: any) => {
-              console.log('deaths')
-              setcasesType('deaths')}}
+            onClick={(event: any) => setcasesType('deaths')}
             title="Deaths"
             cases={prettyPrint(contryInfo.todayDeaths)}
             total={prettyPrint(contryInfo.deaths)}
@@ -133,6 +127,7 @@ const App = () => {
           <h3>Worldwide new cases {casesType}</h3>
           <LineGraph 
             casesType={casesType}
+            country={contryInfo?.countryInfo?.iso2}
           />
         </CardContent>
       </Card>
