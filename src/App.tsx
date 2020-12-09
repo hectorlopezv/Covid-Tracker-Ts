@@ -16,6 +16,8 @@ const App = () => {
   const [tableData, settableData] = useState<any[]>([]);
   const [mapCenter, setmapCenter] = useState({lat: 34.80746, lng: -40.4796});
   const [mapZoom, setmapZoom] = useState<number>(3);
+  const [mapcountries, setmapcountries] = useState([]);
+
   const onCountyChange = async (event: any) => {
     const countryCode = event.target.value;
     const url = countryCode === 'worldwide' ?
@@ -27,7 +29,7 @@ const App = () => {
         setcountry(countryCode);
         setcontryInfo(data);
         setmapCenter({lat: data.countryInfo.lat, lng: data.countryInfo.long});
-        setmapZoom(2);
+        setmapZoom(3);
       })
   };
 
@@ -54,6 +56,7 @@ const App = () => {
             }));
           const sortedData: any[] = sortData(data);
           settableData(sortedData);
+          setmapcountries(data);//al countries Information
           setcountries([...countries]);
         });
 
@@ -103,6 +106,8 @@ const App = () => {
         <Map 
           center={mapCenter}
           zoom={mapZoom}
+          countries={mapcountries}
+          cases="cases"
         />
       </div>
 
