@@ -5,6 +5,7 @@ import Map from './components/map/Map';
 import Table from './components/Table/Table';
 import LineGraph from './components/LineGraph/LineGraph';
 import { sortData } from './utils/sort_data';
+import {prettyPrint} from './utils/prettyStat';
 
 import './App.css';
 
@@ -28,7 +29,9 @@ const App = () => {
       .then(data => {
         setcountry(countryCode);
         setcontryInfo(data);
-        setmapCenter({lat: data.countryInfo.lat, lng: data.countryInfo.long});
+        if(data.countryInfo && data.countryInfo.lat && data.countryInfo.long){
+          setmapCenter({lat: data.countryInfo.lat, lng: data.countryInfo.long});
+        }
         setmapZoom(3);
       })
   };
@@ -86,20 +89,20 @@ const App = () => {
         <div className="app_stats">
           <InfoBox
             title="Coronavirus Cases"
-            cases={contryInfo.todayCases}
-            total={contryInfo.cases}
+            cases={prettyPrint(contryInfo.todayCases)}
+            total={prettyPrint(contryInfo.cases)}
           />
 
           <InfoBox
             title="Recovered"
-            cases={contryInfo.todayRecovered}
-            total={contryInfo.recovered}
+            cases={prettyPrint(contryInfo.todayRecovered)}
+            total={prettyPrint(contryInfo.recovered)}
           />
 
           <InfoBox
             title="Deaths"
-            cases={contryInfo.todayDeaths}
-            total={contryInfo.deaths}
+            cases={prettyPrint(contryInfo.todayDeaths)}
+            total={prettyPrint(contryInfo.deaths)}
           />
         </div>
 

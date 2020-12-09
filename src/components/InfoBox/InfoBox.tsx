@@ -4,7 +4,7 @@ import "./InfoBox.css";
 
 export interface InfoBoxProps {
     title?: string;
-    cases?: string | number;
+    cases?: string | number | any;
     total?: string | number;
 }
  
@@ -20,7 +20,7 @@ const InfoBox: React.FC<InfoBoxProps> = (props) => {
 
                 <h2 className="infoBox_cases">{cases}</h2>
                 <Typography className="infoBox_total" color="textSecondary">
-                    {total}
+                    {`${total} Total`}
                 </Typography>
             </CardContent>
         </Card> 

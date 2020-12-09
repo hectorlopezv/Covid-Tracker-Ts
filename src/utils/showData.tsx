@@ -1,7 +1,7 @@
 import { Circle, Popup } from 'react-leaflet';
 import numeral from 'numeral';
 import React from 'react';
-
+import './showData.css';
 const casesTypeColors: any = {
   cases: {
     hex: "#CC1034",
@@ -21,6 +21,7 @@ const casesTypeColors: any = {
 export const showDataOnMap = (data: any, casesType = "cases") =>
   data.map((country: any) => (
     <Circle
+      key={Math.random().toString()}
       center={[country.countryInfo.lat, country.countryInfo.long]}
       color={casesTypeColors[casesType].hex}
       fillColor={casesTypeColors[casesType].hex}
